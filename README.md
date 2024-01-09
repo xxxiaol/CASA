@@ -1,4 +1,5 @@
-# ![icon](docs/static/images/casa.png) CASA: Causality-driven Argument Sufficiency Assessment
+<img align="left" width="80" height="80" src="docs/static/images/casa.png" alt="icon">
+# CASA: Causality-driven Argument Sufficiency Assessment
 
 ![framework](docs/static/images/framework.png#pic_center)
 ## The CASA Framework
