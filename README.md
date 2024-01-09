@@ -1,6 +1,6 @@
-# 🏠 CASA: Causality-driven Argument Sufficiency Assessment
+# ![icon](docs/static/images/casa.png) CASA: Causality-driven Argument Sufficiency Assessment
 
-![framework](images/framework.png#pic_center)
+![framework](docs/static/images/framework.png#pic_center)
 ## The CASA Framework
 We first extract the premise and conclusion from a given argument, then sample contexts that meet the conditions, make interventions on the contexts, and finally estimate the probability of the conclusion for each unit.
 

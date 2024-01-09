@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Causality-driven Argument Sufficiency Assessment.">
+  <meta name="keywords" content="CASA, Causality, Sufficiency">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CASA: Causality-driven Argument Sufficiency Assessment</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/casa.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/explorer-index.js"></script>
+  <script src="./static/js/question_card.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title is-bold">
+            <img src="./static/images/casa.png" style="width:1em;vertical-align: middle" alt="Logo"/>
+            <span style="vertical-align: middle">CASA</span>
+            </h1>
+          <h2 class="subtitle is-3 publication-subtitle">
+            Causality-driven Argument Sufficiency Assessment
+          </h2>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://xxxiaol.github.io/">Xiao Liu</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://sites.google.com/site/ysfeng/home">Yansong Feng</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="http://web.cs.ucla.edu/~kwchang/">Kai-Wei Chang</a><sup>2</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Peking University,</span>
+            <span class="author-block"><sup>2</sup>University of California Los Angeles</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/xxxiaol/CASA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column has-text-centered">
+        <h2 class="title is-3">Introduction</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            <b>Argument Sufficiency Assessment</b> is the task of determining if the premises of an argument support the conclusion sufficiently.
+            Previous works train classifiers based on human annotations. However, the sufficiency criteria are <b>vague and subjective</b> among annotators.
+          </p>
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/intro.jpg" width="100%">
+              <p> An example of the argument sufficiency assessment task
+              </p>
+            </div>
+          </div>
+
+          <p>
+            To tackle the problem, We propose <img src="static/images/casa.png" style="width:1.0em;vertical-align: middle" alt="Logo"/> <b>CASA</b>, a zero-shot Causality-driven Argument Sufficiency Assessment framework by formulating the task with <b>Probability of Sufficiency (PS)</b>, a concept borrowed from causality:
+          </p>
+          <p align="center">
+           <img src="static/images/equation.png" width="50%" align="middle"  class="center">
+          </p>
+          <p>
+            PS quantifies the probability that introducing X would produce Y in the case where X and Y are in fact absent.
+          </p>
+          <br>
+
+          <p>
+            To measure PS of a given argument, there presents the following challenges:
+            <ul>
+              <li><strong>How to measure the probabilities without observational data</strong>
+                <br>&nbsp &nbsp - How to estimate <mark style="background: #c9daf8!important">P(Y = 1|X = 0, Y = 0)</mark> if we do not have the corresponding data points?</li> 
+              <li><strong>How to intervene in the argument</strong>
+                <br>&nbsp &nbsp - How to estimate <mark style="background: #fff2cc!important">P(Y (X = 1) = 1)</mark> given data conforming to the conditions of X = 0 and Y = 0?</li>
+            </ul>
+            We make a hypothesis and verify it in this work: 
+            Given the <b>commonsense knowledge and reasoning abilities of LLMs</b>, can we use LLMs to <b>sample data and simulate interventions</b>?
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column has-text-centered">
+        <h2 class="title is-3">The <img src="./static/images/casa.png" style="width:1em;vertical-align: middle" alt="Logo"/>
+            <span style="vertical-align: middle">CASA Framework</h2>
+        <div class="box m">
+            <div class="content has-text-centered">
+              <img src="static/images/framework.png" width="100%">
+            </div>
+          </div>
+        <div class="content has-text-justified">
+          <ul>
+            <li><strong>Claim Extraction:</strong> extract the premise and conclusion from a given argument</li> 
+            <li><strong>Context Sampling:</strong> sample contexts that are consistent with ¬premise and ¬conclusion</li>
+            <li><strong>Revision under Intervention:</strong> make interventions on the contexts to meet the premise</li>
+            <li><strong>Probability Estimation:</strong> estimate the probability of the conclusion for each sampled situation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3">Cases</h2>
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/case_llama2.png" width="95%"/>
+              <p> An example of the detailed reasoning process of <img src="static/images/casa.png" style="width:1.0em;vertical-align: middle" alt="Logo"/> CASA (LLAMA2) on BIG-bench-LFD.
+              </p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/case_tulu.png" width="95%"/>
+              <p> An example of the detailed reasoning process of <img src="static/images/casa.png" style="width:1.0em;vertical-align: middle" alt="Logo"/> CASA (TULU) on Climate.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column has-text-centered">
+        <h2 class="title is-3">Results</h2>
+        <img src="static/images/main_results.png" class="center" width="90%">
+        <div class="content has-text-justified">
+          <p>
+            We first compare <img src="static/images/casa.png" style="width:1.0em;vertical-align: middle" alt="Logo"/> CASA with baseline methods on two logical fallacy detection datasets, BIG-bench-LFD and Climate. We find that CASA significantly outperforms all the corresponding zero-shot baselines with significance level α = 0.02, and also surpasses the one-shot baselines.
+          </p>
+        </div>
+        <br>
+        <img src="static/images/stepwise_results.png" class="center" width="48%">
+        <div class="content has-text-justified">
+          <p>
+            To examine whether LLMs work as we expect in each step of <img src="static/images/casa.png" style="width:1.0em;vertical-align: middle" alt="Logo"/> CASA, we conduct step-wise human evaluation. We ask human annotators to rate three aspects individually: 1) In the claim extraction step, do LLMs extract the correct premises and conclusion from the argument? 2) In the context sampling step, are the contexts generated by LLMs consistent with ¬Premise and ¬Conclusion? 3) In the revision step, are the revised situations consistent with the Premise? 
+          </p>
+          <p>
+            The accuracy of all aspects is above 90%, exhibiting that LLMs are capable of generating textual data that conform to certain conditions, and making interventions on situations in the form of natural language.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column has-text-centered">
+        <h2 class="title is-3">Application: Writing Assistance ✏️ </h2>
+        <div class="box m">
+          <img src="static/images/application.png" class="center" width="100%">
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            We apply <img src="static/images/casa.png" style="width:1.0em;vertical-align: middle" alt="Logo"/> CASA to a realistic scenario: providing writing suggestions for essays written by students. If CASA identifies that an argument in an essay is insufficient, we extract explainable reasons from CASA’s reasoning process, and provide them as suggestions for revision.
+          </p>
+          <p>
+            Specifically, we generate objection situations (situations that challenge the sufficiency of the argument) out of intervened situations R that contradict the Conclusion, by removing the Premise from R.
+          </p>
+            <br>
+            <b>Question 1: Is <img src="static/images/casa.png" style="width:1.0em;vertical-align: middle" alt="Logo"/> CASA capable of generating rational and feasible objection situations to the essays?</b>
+          </p>
+        </div>
+        <img src="static/images/application_q1.png" class="center" width="40%">
+        <div class="content has-text-justified">
+          <p>
+            Compared with directly prompting the base model, objection situations generated by CASA are more rational and feasible. The gap in feasibility is larger, as LLMs are likely to generate abstract objections when prompting, while CASA provides more practical objections which are easier to address.
+          </p>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            <b>Question 2: Will revising based on the generated objection situations improve the sufficiency of the essays?</b>
+          </p>
+        </div>
+        <img src="static/images/application_q2.png" class="center" width="45%">
+        <div class="content has-text-justified">
+          <p>
+            In both methods tested, the Revised is Better proportion supersedes the Original is Better proportion, emphasizing an improvement in writing sufficiency. On the other hand, with the same base model, <img src="static/images/casa.png" style="width:1.0em;vertical-align: middle" alt="Logo"/> CASA obtains a higher <b>Revised - Original ratio</b> (the Revised is Better proportion minus the Original is Better proportion) compared to the prompting method. This suggests that, even if we do not consider the difficulty of revision, CASA helps more in the revision process.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- <section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>
+      
+    </code></pre>
+  </div>
+</section> -->
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is website adapted from <a href="https://nerfies.github.io/">Nerfies</a>, licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
