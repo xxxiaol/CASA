@@ -2,7 +2,7 @@
 
 # CASA: Causality-driven Argument Sufficiency Assessment
 
-[<a href="https://xxxiaol.github.io/CASA/"> Project Website </a>]
+[a href="https://arxiv.org/abs/2401.05249"> Paper </a>][<a href="https://xxxiaol.github.io/CASA/"> Project Website </a>]
 
 ![framework](docs/static/images/framework.png#pic_center)
 ## The CASA Framework
@@ -19,3 +19,14 @@ We provide the data we experiment with in the 'data/' folder.
  - `Bigbench-LFD.json`: the informal statements from the [BIG-bench logical fallacy detection](https://github.com/google/BIG-bench/tree/main/bigbench/benchmark_tasks/logical_fallacy_detection) task
  - `Climate.json`: arguments from climate change articles fact-checked by climate scientists ([the original dataset](https://github.com/Tariq60/fallacy-detection/tree/master/data/climate))
  - `AAE_sampled100.json`: randomly sampled arguments from the [Argument-Annotated Essays](https://tudatalib.ulb.tu-darmstadt.de/handle/tudatalib/2422) dataset
+
+ ## Citation
+ Please cite our paper if this repository inspires your work.
+```
+@article{liu2024casa,
+  title={CASA: Causality-driven Argument Sufficiency Assessment},
+  author={Liu, Xiao and Feng, Yansong and Chang, Kai-Wei},
+  journal={arXiv preprint arXiv:2401.05249},
+  year={2024}
+}
+```
