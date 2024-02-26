@@ -2,7 +2,7 @@
 
 # CASA: Causality-driven Argument Sufficiency Assessment
 
-[<a href="https://arxiv.org/abs/2401.05249"> Paper </a>][<a href="https://xxxiaol.github.io/CASA/"> Project Website </a>]
+<a href="https://arxiv.org/abs/2401.05249">[Paper]</a> <a href="https://xxxiaol.github.io/CASA/">[Project Website]</a>
 
 ![framework](docs/static/images/framework.png#pic_center)
 ## The CASA Framework
